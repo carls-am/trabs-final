@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/functions.php';
+
 $recentGames = getRecentActiveGames(6);
 $topGames = getTopRatedGames(6);
 $lowGames = getLowestRatedGames(6);

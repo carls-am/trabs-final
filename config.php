@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1;port=3307'); // Ajuste o número se for outra porta
 define('DB_NAME', 'starpad_db');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('SITE_URL', 'http://localhost/starpad');
+define('SITE_URL', 'http://localhost/trabs-final-main');
 define('UPLOAD_DIR', __DIR__ . '/uploads/avatars/');
 define('MAX_REVIEW_CHARS', 2000);
 define('DEFAULT_THEME', 'dark');
