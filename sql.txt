@@ -1,10 +1,10 @@
--- STARTPAD - Estrutura do Banco de Dados Relacional
--- Executar no MySQL/MariaDB (XAMPP, WAMP, etc.)
+-- ============================================================
+-- CRIAÇÃO DO BANCO DE DADOS
+-- ============================================================
 
 CREATE DATABASE IF NOT EXISTS starpad_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE starpad_db;
 
--- Tabela de usuários
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -15,7 +15,6 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- Tabela de jogos
 CREATE TABLE games (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(150) NOT NULL,
@@ -28,13 +27,11 @@ CREATE TABLE games (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- Tabela de tags
 CREATE TABLE tags (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(60) NOT NULL UNIQUE
 ) ENGINE=InnoDB;
 
--- Relacionamento jogo-tag (N:N)
 CREATE TABLE game_tags (
     game_id INT NOT NULL,
     tag_id INT NOT NULL,
@@ -43,7 +40,6 @@ CREATE TABLE game_tags (
     FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Tabela de reviews (avaliações)
 CREATE TABLE reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -58,7 +54,6 @@ CREATE TABLE reviews (
     FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Tabela de likes/dislikes em reviews
 CREATE TABLE review_likes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -70,7 +65,6 @@ CREATE TABLE review_likes (
     FOREIGN KEY (review_id) REFERENCES reviews(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Tabela de listas de jogos
 CREATE TABLE user_lists (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -80,7 +74,6 @@ CREATE TABLE user_lists (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Jogos dentro das listas
 CREATE TABLE list_entries (
     id INT AUTO_INCREMENT PRIMARY KEY,
     list_id INT NOT NULL,
@@ -91,7 +84,6 @@ CREATE TABLE list_entries (
     FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Tabela de denúncias/reports
 CREATE TABLE reports (
     id INT AUTO_INCREMENT PRIMARY KEY,
     reporter_id INT NOT NULL,
@@ -103,17 +95,17 @@ CREATE TABLE reports (
 ) ENGINE=InnoDB;
 
 -- ============================================================
--- INSERTS DE EXEMPLO (Placeholders)
+-- ENTRADAS NO BANCO DE DADOS
 -- ============================================================
 
--- Tags populares
 INSERT INTO tags (name) VALUES 
 ('Ação'),('RPG'),('FPS'),('Indie'),('E-sports'),
 ('Multiplayer'),('Singleplayer'),('Mundo Aberto'),
 ('Terror'),('Estratégia'),('Corrida'),('Pixel Art'),
 ('Cooperativo'),('Competitivo'),('Battle Royale');
 
--- Jogos (14 títulos) com imagens placeholder
+-- jogos gomes
+
 INSERT INTO games (title, developer, genre, platform, release_date, cover_image_url, description) VALUES
 ('Eclipse Protocol', 'Void Interactive', 'FPS', 'PC', '2024-03-15', 
  'https://placehold.co/300x400/1a1a2e/e94560?text=Eclipse+Protocol&font=montserrat',
@@ -171,7 +163,7 @@ INSERT INTO games (title, developer, genre, platform, release_date, cover_image_
  'https://placehold.co/300x400/1a0000/ff4444?text=Warzone+Rebirth&font=montserrat',
  'Battle Royale renovado com mapa dinâmico, eventos ao vivo e um sistema de classes que permite diferentes estilos de jogo. Crossplay completo entre plataformas.');
 
--- Associar tags aos jogos (exemplos)
+-- botar tags nos jogos
 INSERT INTO game_tags (game_id, tag_id) VALUES
 (1,1),(1,3),(1,6),                              -- Eclipse Protocol: Ação, FPS, Multiplayer
 (2,1),(2,11),(2,6),                             -- Neon Drift: Ação, Corrida, Multiplayer
