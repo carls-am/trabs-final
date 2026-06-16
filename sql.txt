@@ -1,0 +1,189 @@
+-- STARTPAD - Estrutura do Banco de Dados Relacional
+-- Executar no MySQL/MariaDB (XAMPP, WAMP, etc.)
+
+CREATE DATABASE IF NOT EXISTS starpad_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE starpad_db;
+
+-- Tabela de usuários
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    avatar_url VARCHAR(500) DEFAULT NULL,
+    bio TEXT DEFAULT NULL,
+    favorite_game_id INT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Tabela de jogos
+CREATE TABLE games (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    developer VARCHAR(100) DEFAULT 'Desconhecida',
+    genre VARCHAR(100) DEFAULT 'Indie',
+    platform VARCHAR(100) DEFAULT 'PC',
+    release_date DATE DEFAULT NULL,
+    cover_image_url VARCHAR(500) DEFAULT NULL,
+    description TEXT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Tabela de tags
+CREATE TABLE tags (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(60) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+-- Relacionamento jogo-tag (N:N)
+CREATE TABLE game_tags (
+    game_id INT NOT NULL,
+    tag_id INT NOT NULL,
+    PRIMARY KEY (game_id, tag_id),
+    FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tabela de reviews (avaliações)
+CREATE TABLE reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    game_id INT NOT NULL,
+    rating TINYINT NOT NULL CHECK (rating BETWEEN 1 AND 10),
+    review_text TEXT DEFAULT NULL,
+    has_spoiler TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_user_game (user_id, game_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tabela de likes/dislikes em reviews
+CREATE TABLE review_likes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    review_id INT NOT NULL,
+    vote_type ENUM('like','dislike') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_user_review (user_id, review_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (review_id) REFERENCES reviews(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tabela de listas de jogos
+CREATE TABLE user_lists (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    name VARCHAR(120) NOT NULL,
+    is_public TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Jogos dentro das listas
+CREATE TABLE list_entries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    list_id INT NOT NULL,
+    game_id INT NOT NULL,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_list_game (list_id, game_id),
+    FOREIGN KEY (list_id) REFERENCES user_lists(id) ON DELETE CASCADE,
+    FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tabela de denúncias/reports
+CREATE TABLE reports (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    reporter_id INT NOT NULL,
+    entity_type ENUM('review','list','user') NOT NULL,
+    entity_id INT NOT NULL,
+    reason TEXT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (reporter_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ============================================================
+-- INSERTS DE EXEMPLO (Placeholders)
+-- ============================================================
+
+-- Tags populares
+INSERT INTO tags (name) VALUES 
+('Ação'),('RPG'),('FPS'),('Indie'),('E-sports'),
+('Multiplayer'),('Singleplayer'),('Mundo Aberto'),
+('Terror'),('Estratégia'),('Corrida'),('Pixel Art'),
+('Cooperativo'),('Competitivo'),('Battle Royale');
+
+-- Jogos (14 títulos) com imagens placeholder
+INSERT INTO games (title, developer, genre, platform, release_date, cover_image_url, description) VALUES
+('Eclipse Protocol', 'Void Interactive', 'FPS', 'PC', '2024-03-15', 
+ 'https://placehold.co/300x400/1a1a2e/e94560?text=Eclipse+Protocol&font=montserrat',
+ 'Um FPS tático ambientado em um futuro distópico onde agentes de elite enfrentam corporações corruptas em missões de alto risco. Jogabilidade focada em trabalho em equipe e narrativa ramificada.'),
+
+('Neon Drift', 'Synthwave Studios', 'Corrida', 'PC', '2023-11-20',
+ 'https://placehold.co/300x400/0f0f23/00d4ff?text=Neon+Drift&font=montserrat',
+ 'Corrida arcade com estética synthwave, pistas iluminadas por neon e uma trilha sonora eletrizante. Personalize seu veículo e dispute contra pilotos de todo o mundo.'),
+
+('Shadow Realm', 'Elder Forge', 'RPG', 'PlayStation 5', '2024-06-10',
+ 'https://placehold.co/300x400/2d1b3d/c9a0dc?text=Shadow+Realm&font=montserrat',
+ 'RPG de ação em mundo aberto onde você explora reinos sombrios, enfrenta criaturas místicas e descobre segredos ancestrais. Sistema de combate dinâmico e árvore de habilidades profunda.'),
+
+('Pixel Warriors', 'BitBlade', 'Indie', 'Nintendo Switch', '2024-01-05',
+ 'https://placehold.co/300x400/1a3a1a/7fff7f?text=Pixel+Warriors&font=montserrat',
+ 'Aventura indie em pixel art com elementos de metroidvania. Explore masmorras, colete itens lendários e derrote chefes desafiadores neste tributo aos clássicos dos anos 90.'),
+
+('Arena Legends', 'Iron Circuit', 'E-sports', 'PC', '2023-09-18',
+ 'https://placehold.co/300x400/1a1a3e/f5c518?text=Arena+Legends&font=montserrat',
+ 'MOBA competitivo com heróis únicos e partidas ranqueadas intensas. O cenário competitivo já movimenta torneios internacionais com premiações milionárias.'),
+
+('Dreadwood', 'Nightfall Games', 'Terror', 'PC', '2024-02-28',
+ 'https://placehold.co/300x400/0d0d0d/8b0000?text=Dreadwood&font=montserrat',
+ 'Survival horror psicológico ambientado em uma floresta amaldiçoada. Gerencie recursos escassos, resolva quebra-cabeças e enfrente horrores que se adaptam aos seus medos.'),
+
+('Starforge Command', 'Galaxy Forge', 'Estratégia', 'PC', '2024-04-22',
+ 'https://placehold.co/300x400/0a1628/4ea8de?text=Starforge+Command&font=montserrat',
+ 'RTS espacial com batalhas épicas entre facções interestelares. Construa bases, comande frotas e conquiste sistemas solares em uma campanha não linear.'),
+
+('Turbo Brawl', 'Crash Pixel', 'Ação', 'Xbox Series X', '2024-05-30',
+ 'https://placehold.co/300x400/3d1500/ff6b35?text=Turbo+Brawl&font=montserrat',
+ 'Party fighter caótico para até 8 jogadores locais ou online. Personagens excêntricos, arenas interativas e power-ups que viram o jogo a qualquer momento.'),
+
+('Echoes of the Fallen', 'Lunaris Studio', 'RPG', 'PC', '2024-07-12',
+ 'https://placehold.co/300x400/1c1c3a/c0c0ff?text=Echoes+of+the+Fallen&font=montserrat',
+ 'RPG narrativo com escolhas que impactam profundamente a história. Acompanhe um grupo de heróis em uma jornada emocionante para restaurar o equilíbrio entre luz e escuridão.'),
+
+('Velocity X', 'Apex Drive', 'Corrida', 'PlayStation 5', '2024-08-03',
+ 'https://placehold.co/300x400/200020/ff69b4?text=Velocity+X&font=montserrat',
+ 'Corrida futurista com veículos antigravidade em pistas que desafiam a física. Gráficos de última geração e multiplayer cross-platform.'),
+
+('Bastion Siege', 'Shieldwall Studios', 'Ação', 'PC', '2024-03-28',
+ 'https://placehold.co/300x400/3d2b1a/d4a574?text=Bastion+Siege&font=montserrat',
+ 'Jogo de ação medieval com cercos a castelos, combate com espadas e escudos, e um modo história inspirado em eventos históricos.'),
+
+('Data Breach', 'Cipher Corp', 'FPS', 'PC', '2024-09-15',
+ 'https://placehold.co/300x400/001a00/00ff88?text=Data+Breach&font=montserrat',
+ 'FPS cyberpunk focado em hacking e infiltração. Invada sistemas, desative defesas e enfrente corporações em um mundo hiperconectado.'),
+
+('Little Monsters', 'Happy Pixels', 'Indie', 'Nintendo Switch', '2024-06-01',
+ 'https://placehold.co/300x400/fff5e6/ff9999?text=Little+Monsters&font=montserrat',
+ 'Simulador adorável onde você cuida de criaturinhas fofas, constrói seu habitat e explora um mundo colorido cheio de surpresas. Relaxante e encantador.'),
+
+('Warzone: Rebirth', 'Omega Strike', 'Battle Royale', 'PC', '2024-01-20',
+ 'https://placehold.co/300x400/1a0000/ff4444?text=Warzone+Rebirth&font=montserrat',
+ 'Battle Royale renovado com mapa dinâmico, eventos ao vivo e um sistema de classes que permite diferentes estilos de jogo. Crossplay completo entre plataformas.');
+
+-- Associar tags aos jogos (exemplos)
+INSERT INTO game_tags (game_id, tag_id) VALUES
+(1,1),(1,3),(1,6),                              -- Eclipse Protocol: Ação, FPS, Multiplayer
+(2,1),(2,11),(2,6),                             -- Neon Drift: Ação, Corrida, Multiplayer
+(3,2),(3,7),(3,8),                              -- Shadow Realm: RPG, Singleplayer, Mundo Aberto
+(4,4),(4,7),(4,12),                             -- Pixel Warriors: Indie, Singleplayer, Pixel Art
+(5,5),(5,6),(5,14),                             -- Arena Legends: E-sports, Multiplayer, Competitivo
+(6,9),(6,7),                                    -- Dreadwood: Terror, Singleplayer
+(7,10),(7,7),(7,6),                             -- Starforge Command: Estratégia, Singleplayer, Multiplayer
+(8,1),(8,6),(8,13),                             -- Turbo Brawl: Ação, Multiplayer, Cooperativo
+(9,2),(9,7),(9,8),                              -- Echoes of the Fallen: RPG, Singleplayer, Mundo Aberto
+(10,1),(10,11),(10,6),                          -- Velocity X: Ação, Corrida, Multiplayer
+(11,1),(11,7),                                  -- Bastion Siege: Ação, Singleplayer
+(12,1),(12,3),(12,7),                           -- Data Breach: Ação, FPS, Singleplayer
+(13,4),(13,7),(13,12),                          -- Little Monsters: Indie, Singleplayer, Pixel Art
+(14,15),(14,6),(14,14);                         -- Warzone Rebirth: Battle Royale, Multiplayer, Competitivo
