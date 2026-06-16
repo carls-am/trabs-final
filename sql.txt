@@ -108,7 +108,7 @@ INSERT INTO tags (name) VALUES
 
 INSERT INTO games (title, developer, genre, platform, release_date, cover_image_url, description) VALUES
 ('Eclipse Protocol', 'Void Interactive', 'FPS', 'PC', '2024-03-15', 
- 'https://placehold.co/300x400/1a1a2e/e94560?text=Eclipse+Protocol&font=montserrat',
+ 'https://i.pinimg.com/736x/3f/65/a8/3f65a8d7a567995c406216d8a17fbf8b.jpg',
  'Um FPS tático ambientado em um futuro distópico onde agentes de elite enfrentam corporações corruptas em missões de alto risco. Jogabilidade focada em trabalho em equipe e narrativa ramificada.'),
 
 ('Neon Drift', 'Synthwave Studios', 'Corrida', 'PC', '2023-11-20',
