@@ -1,17 +1,15 @@
 <?php
-// config.php - Conexão com banco de dados e configurações globais
 session_start();
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'starpad_db');
 define('DB_USER', 'root');
-define('DB_PASS', '');       // Altere conforme seu ambiente
+define('DB_PASS', '');
 define('SITE_URL', 'http://localhost/starpad');
 define('UPLOAD_DIR', __DIR__ . '/uploads/avatars/');
 define('MAX_REVIEW_CHARS', 2000);
-define('DEFAULT_THEME', 'dark'); // Tema padrão: escuro
+define('DEFAULT_THEME', 'dark');
 
-// Conexão PDO
 function getDB(): PDO {
     static $pdo = null;
     if ($pdo === null) {
