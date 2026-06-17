@@ -25,7 +25,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <header class="main-header">
     <div class="header-inner">
         <a href="<?= SITE_URL ?>/index.php" class="logo">
-            <span class="logo-icon">⭐</span>
+            <span class="logo-icon">✩</span>
             <span class="logo-text">StarPad</span>
         </a>
         
