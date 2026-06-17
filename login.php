@@ -55,7 +55,7 @@ include __DIR__ . '/header.php';
 ?>
 
 <div class="form-container">
-    <h2><?= $mode === 'register' ? '📝 Criar Conta' : '🔑 Entrar no StarPad' ?></h2>
+    <h2><?= $mode === 'register' ? 'Criar Conta' : 'Entrar no StarPad' ?></h2>
     
     <?php if ($message): ?>
         <div class="message <?= $messageType ?>"><?= h($message) ?></div>
@@ -93,7 +93,7 @@ include __DIR__ . '/header.php';
         <?php endif; ?>
     </p>
     <p style="text-align:center;font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem;">
-        ℹ️ Apenas username e senha são necessários.
+        Apenas username e senha são necessários.
     </p>
 </div>
 

@@ -3,7 +3,7 @@
 <footer class="main-footer">
     <div class="footer-inner">
         <div class="footer-brand">
-            <span class="logo-icon">⭐</span> <strong>StarPad</strong>
+            <span class="logo-icon">✩</span><strong>StarPad</strong>
             <p>Plataforma de reviews de jogos eletrônicos. Inspirada no Letterboxd.</p>
         </div>
         <div class="footer-links">

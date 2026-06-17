@@ -4,7 +4,7 @@ session_start();
 //conectar cm o mysql, porta do xampp (?)
 //define = constante = variavel que nao varia
 //dados de acesso do banco de dados
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'localhost:3307');
 define('DB_NAME', 'starpad_db');
 define('DB_USER', 'root');
 define('DB_PASS', '');

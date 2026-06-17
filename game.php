@@ -39,12 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isLoggedIn()) {
             // Atualizar review existente
             $stmt = $db->prepare("UPDATE reviews SET rating=?, review_text=?, has_spoiler=? WHERE id=? AND user_id=?");
             $stmt->execute([$rating, $reviewText, $hasSpoiler, $existing['id'], $_SESSION['user_id']]);
-            $message = 'Sua avaliação foi atualizada! ⭐';
+            $message = 'Sua avaliação foi atualizada!';
         } else {
             // Nova review
             $stmt = $db->prepare("INSERT INTO reviews (user_id, game_id, rating, review_text, has_spoiler) VALUES (?,?,?,?,?)");
             $stmt->execute([$_SESSION['user_id'], $game['id'], $rating, $reviewText, $hasSpoiler]);
-            $message = 'Sua avaliação foi publicada! ⭐';
+            $message = 'Sua avaliação foi publicada!';
         }
         $messageType = 'success';
         // Recarregar reviews
@@ -75,10 +75,10 @@ include __DIR__ . '/header.php';
     <div class="game-detail-info">
         <h1><?= h($game['title']) ?></h1>
         <div class="game-detail-meta">
-            <span>🎮 <?= h($game['developer']) ?></span>
-            <span>📀 <?= h($game['platform']) ?></span>
-            <span>📅 <?= h($game['release_date'] ?? 'Data não informada') ?></span>
-            <span>🎯 <?= h($game['genre']) ?></span>
+            <span>✑ <?= h($game['developer']) ?></span>
+            <span>⌨ <?= h($game['platform']) ?></span>
+            <span>✉ <?= h($game['release_date'] ?? 'Data não informada') ?></span>
+            <span>♙ <?= h($game['genre']) ?></span>
         </div>
         
         <!-- Tags -->
@@ -138,13 +138,13 @@ include __DIR__ . '/header.php';
     </section>
 <?php else: ?>
     <div style="text-align:center;padding:1.5rem;background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border-color);margin-bottom:2rem;">
-        <p>🔒 <a href="<?= SITE_URL ?>/login.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>">Faça login</a> para avaliar este jogo.</p>
+        <p><a href="<?= SITE_URL ?>/login.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']) ?>">Faça login</a> para avaliar este jogo.</p>
     </div>
 <?php endif; ?>
 
 <!-- Lista de Reviews -->
 <section>
-    <h3 style="margin-bottom:1rem;">💬 Resenhas da Comunidade (<?= $reviewCount ?>)</h3>
+    <h3 style="margin-bottom:1rem;">Resenhas da Comunidade (<?= $reviewCount ?>)</h3>
     <?php if ($reviews): ?>
         <?php foreach ($reviews as $review): 
             $votes = getReviewVotes($review['id']);
@@ -164,7 +164,7 @@ include __DIR__ . '/header.php';
                 </div>
                 
                 <?php if ($review['has_spoiler']): ?>
-                    <span class="spoiler-badge" onclick="revealSpoiler(this.nextElementSibling)">⚠️ Spoiler — Clique para revelar</span>
+                    <span class="spoiler-badge" onclick="revealSpoiler(this.nextElementSibling)">Spoiler — Clique para revelar</span>
                     <div class="review-text spoiler-blur" onclick="revealSpoiler(this)">
                         <?= nl2br(h($review['review_text'])) ?>
                     </div>
@@ -177,25 +177,25 @@ include __DIR__ . '/header.php';
                         <button class="btn-vote <?= $userVote === 'like' ? 'voted-like' : '' ?>" 
                                 id="like-btn-<?= $review['id'] ?>"
                                 onclick="voteReview(<?= $review['id'] ?>,'like')">
-                            ❤️ <span id="like-count-<?= $review['id'] ?>"><?= $votes['likes'] ?></span>
+                            ◡‿◡ <span id="like-count-<?= $review['id'] ?>"><?= $votes['likes'] ?></span>
                         </button>
                         <button class="btn-vote <?= $userVote === 'dislike' ? 'voted-dislike' : '' ?>" 
                                 id="dislike-btn-<?= $review['id'] ?>"
                                 onclick="voteReview(<?= $review['id'] ?>,'dislike')">
-                            👎 <span id="dislike-count-<?= $review['id'] ?>"><?= $votes['dislikes'] ?></span>
+                            ＞︿＜ <span id="dislike-count-<?= $review['id'] ?>"><?= $votes['dislikes'] ?></span>
                         </button>
                     <?php else: ?>
-                        <span>❤️ <?= $votes['likes'] ?> | 👎 <?= $votes['dislikes'] ?></span>
+                        <span>◡‿◡ <?= $votes['likes'] ?> | ＞︿＜ <?= $votes['dislikes'] ?></span>
                     <?php endif; ?>
                     
                     <?php if (isLoggedIn()): ?>
-                        <button class="btn-report" onclick="location.href='<?= SITE_URL ?>/report.php?type=review&id=<?= $review['id'] ?>'">🚩 Denunciar</button>
+                        <button class="btn-report" onclick="location.href='<?= SITE_URL ?>/report.php?type=review&id=<?= $review['id'] ?>'">☒ Denunciar</button>
                     <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <p style="color:var(--text-muted);text-align:center;padding:2rem;">Nenhuma resenha ainda. Seja o primeiro a avaliar! 🎮</p>
+        <p style="color:var(--text-muted);text-align:center;padding:2rem;">Nenhuma resenha ainda. Seja o primeiro a avaliar!</p>
     <?php endif; ?>
 </section>
 

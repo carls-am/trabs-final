@@ -51,12 +51,12 @@ include __DIR__ . '/header.php';
     <div class="message <?= $messageType ?>"><?= h($message) ?></div>
 <?php endif; ?>
 
-<h1>⚙️ Configurações do Perfil</h1>
+<h1>Configurações do Perfil</h1>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem;">
     <!-- Editar Perfil -->
     <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius);border:1px solid var(--border-color);">
-        <h3>✏️ Editar Informações</h3>
+        <h3>Editar Informações</h3>
         <form method="POST" enctype="multipart/form-data">
             <input type="hidden" name="action" value="update_profile">
             <div class="form-group">
@@ -88,7 +88,7 @@ include __DIR__ . '/header.php';
     
     <!-- Preview do avatar -->
     <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius);border:1px solid var(--border-color);text-align:center;">
-        <h3>📷 Avatar Atual</h3>
+        <h3>Avatar Atual</h3>
         <img src="<?= getAvatarUrl($currentUser['avatar_url'], $currentUser['username']) ?>" 
              alt="Avatar" 
              style="width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid var(--accent);margin:1rem auto;"
@@ -99,7 +99,7 @@ include __DIR__ . '/header.php';
 
 <!-- Gerenciar Reviews (CRUD) -->
 <section style="margin-top:3rem;">
-    <h3>📝 Gerenciar Minhas Análises (CRUD)</h3>
+    <h3>Gerenciar Minhas Análises (CRUD)</h3>
     <p style="color:var(--text-muted);margin-bottom:1rem;">Total: <?= count($userReviews) ?> análise(s)</p>
     
     <?php if ($userReviews): ?>
@@ -124,7 +124,7 @@ include __DIR__ . '/header.php';
                             </td>
                             <td style="padding:0.7rem;text-align:center;color:var(--star-color);"><?= $review['rating'] ?>/10</td>
                             <td style="padding:0.7rem;text-align:center;"><?= date('d/m/Y', strtotime($review['created_at'])) ?></td>
-                            <td style="padding:0.7rem;text-align:center;"><?= $review['has_spoiler'] ? '⚠️' : '—' ?></td>
+                            <td style="padding:0.7rem;text-align:center;"><?= $review['has_spoiler'] ? '👁' : '—' ?></td>
                             <td style="padding:0.7rem;text-align:center;">
                                 <a href="<?= SITE_URL ?>/game.php?id=<?= $review['game_id'] ?>#review-<?= $review['id'] ?>" 
                                    class="btn-secondary" style="font-size:0.75rem;padding:0.3rem 0.6rem;">Editar</a>
