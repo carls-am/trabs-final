@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><title>StarPad — Meu Perfil</title><link rel="stylesheet" href="style.css"></head>
+<body>
+    <header class="main-header">...</header>
+    <main class="main-content">
+        <h1>⚙️ Configurações do Perfil</h1>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem;">
+            <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius);border:1px solid var(--border-color);">
+                <h3>✏️ Editar Informações</h3>
+                <form><div class="form-group"><label>Username: <strong>João</strong></label></div>
+                <div class="form-group"><label>Bio:</label><textarea rows="3">Apaixonado por RPGs.</textarea></div>
+                <div class="form-group"><label>Jogo Favorito:</label><select><option>Elden Ring</option><option>Baldur's Gate 3</option></select></div>
+                <div class="form-group"><label>Foto de Perfil:</label><input type="file"></div>
+                <button class="btn-primary">Salvar Alterações</button></form>
+            </div>
+            <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius);border:1px solid var(--border-color);text-align:center;">
+                <h3>📷 Avatar Atual</h3>
+                <img src="https://ui-avatars.com/api/?name=Joao&background=e94560&color=fff&size=150" style="width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid var(--accent);margin:1rem auto;">
+                <p>João</p>
+            </div>
+        </div>
+        <section style="margin-top:3rem;"><h3>📝 Gerenciar Minhas Análises</h3>
+            <table style="width:100%;border-collapse:collapse;background:var(--bg-card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-color);">
+                <thead><tr style="background:var(--bg-hover);"><th>Jogo</th><th>Nota</th><th>Data</th><th>Spoiler</th><th>Ações</th></tr></thead>
+                <tbody><tr><td><a href="game.html">Elden Ring</a></td><td>10</td><td>10/06/26</td><td>—</td><td><a href="game.html" class="btn-secondary" style="font-size:0.75rem;">Editar</a> <a href="#" class="btn-danger" style="font-size:0.75rem;">Excluir</a></td></tr></tbody>
+            </table>
+        </section>
+    </main>
+    <footer class="main-footer">...</footer>
+</body>
+</html>
