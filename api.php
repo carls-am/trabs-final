@@ -1,10 +1,9 @@
 <?php
-// api.php — Endpoints para ações assíncronas
 require_once __DIR__ . '/functions.php';
 header('Content-Type: application/json');
 
 $action = $_GET['action'] ?? '';
-$response = ['success' => false, 'message' => 'Ação inválida.'];
+$response = ['success' => false, 'message' => 'Não funcionou'];
 
 if (!isLoggedIn()) {
     $response['message'] = 'Você precisa estar logado.';

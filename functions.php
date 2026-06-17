@@ -1,16 +1,20 @@
 <?php
-// functions.php - Funções utilitárias do StarPad
+//funcoes de consultas e sql
 require_once __DIR__ . '/config.php';
 
-// Busca jogo por ID
+//stmt = statement
+
+//consulta pra jogos
 function getGame(int $id): ?array {
+    //array gera a linha de consulta
     $db = getDB();
+    //o prepare e execute funcionam como uma função instantânea sem armazenamento
     $stmt = $db->prepare("SELECT * FROM games WHERE id = ?");
     $stmt->execute([$id]);
     return $stmt->fetch() ?: null;
 }
 
-// Busca usuário por ID
+//consulta de usuario por id
 function getUser(int $id): ?array {
     $db = getDB();
     $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
@@ -18,7 +22,7 @@ function getUser(int $id): ?array {
     return $stmt->fetch() ?: null;
 }
 
-// Busca usuário por username
+//consulta usuario por nome
 function getUserByUsername(string $username): ?array {
     $db = getDB();
     $stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
@@ -26,24 +30,26 @@ function getUserByUsername(string $username): ?array {
     return $stmt->fetch() ?: null;
 }
 
-// Média de avaliações de um jogo
+//media das avaliações do jogo games
 function getGameAverageRating(int $gameId): ?float {
     $db = getDB();
+    //avg ratind = sql que calcula média, round = arredonda o numero 
     $stmt = $db->prepare("SELECT AVG(rating) AS avg_rating, COUNT(*) AS total FROM reviews WHERE game_id = ?");
     $stmt->execute([$gameId]);
     $row = $stmt->fetch();
     return $row['total'] > 0 ? round($row['avg_rating'], 1) : null;
 }
 
-// Total de reviews de um jogo
+//total de reviews do jogo games
 function getGameReviewCount(int $gameId): int {
     $db = getDB();
+    //consulta sql fofa
     $stmt = $db->prepare("SELECT COUNT(*) FROM reviews WHERE game_id = ?");
     $stmt->execute([$gameId]);
     return (int) $stmt->fetchColumn();
 }
 
-// Review do usuário para um jogo específico
+//review de usuario ao jogo específico
 function getUserReview(int $userId, int $gameId): ?array {
     $db = getDB();
     $stmt = $db->prepare("SELECT * FROM reviews WHERE user_id = ? AND game_id = ?");
@@ -51,7 +57,7 @@ function getUserReview(int $userId, int $gameId): ?array {
     return $stmt->fetch() ?: null;
 }
 
-// Todas as reviews de um jogo (mais recentes primeiro)
+//todas as reviews, ordenados por data
 function getGameReviews(int $gameId, int $limit = 20): array {
     $db = getDB();
     $stmt = $db->prepare(
@@ -88,10 +94,12 @@ function getUserVote(int $userId, int $reviewId): ?string {
     return $row['vote_type'] ?? null;
 }
 
-// Busca jogos com filtros
+//aplicação de filtro
 function searchGames(?string $search = null, ?string $genre = null, ?string $platform = null, ?string $tag = null, int $limit = 50): array {
     $db = getDB();
+    //consulta com pesquisa, filtros, tags e pah
     $sql = "SELECT DISTINCT g.* FROM games g LEFT JOIN game_tags gt ON g.id = gt.game_id LEFT JOIN tags t ON gt.tag_id = t.id WHERE 1=1";
+    //WHERE 1 = 1 dribla e traz tudo
     $params = [];
     
     if ($search) {
@@ -120,7 +128,7 @@ function searchGames(?string $search = null, ?string $genre = null, ?string $pla
     return $stmt->fetchAll();
 }
 
-// Tags de um jogo
+//lista as tags do jogo
 function getGameTags(int $gameId): array {
     $db = getDB();
     $stmt = $db->prepare(
@@ -130,21 +138,21 @@ function getGameTags(int $gameId): array {
     return $stmt->fetchAll();
 }
 
-// Todas as tags (para nuvem de tags)
+//exibe todas as tags e pesquisa por elas
 function getAllTags(): array {
     $db = getDB();
     $stmt = $db->query("SELECT t.*, COUNT(gt.game_id) AS game_count FROM tags t LEFT JOIN game_tags gt ON t.id = gt.tag_id GROUP BY t.id ORDER BY game_count DESC");
     return $stmt->fetchAll();
 }
 
-// Gêneros disponíveis
+//todos os generos (para pesquisa)
 function getAllGenres(): array {
     $db = getDB();
     $stmt = $db->query("SELECT DISTINCT genre FROM games ORDER BY genre");
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
-// Plataformas disponíveis
+//todas as plataformas (para pesquisa)
 function getAllPlatforms(): array {
     $db = getDB();
     $stmt = $db->query("SELECT DISTINCT platform FROM games ORDER BY platform");
@@ -174,16 +182,16 @@ function getUserReviews(int $userId, int $limit = 30): array {
     return $stmt->fetchAll();
 }
 
-// Avatar URL (usa serviço ui-avatars.com como fallback)
+//exibe ou substitui avatares em caso de inexistencia
 function getAvatarUrl(?string $url, string $username): string {
     if ($url && file_exists(__DIR__ . '/' . ltrim($url, '/'))) {
         return SITE_URL . '/' . ltrim($url, '/');
     }
-    // Fallback: ui-avatars.com (serviço gratuito de placeholders)
+    //placeholder da foto de perfil
     return 'https://ui-avatars.com/api/?name=' . urlencode($username) . '&background=e94560&color=fff&size=150&bold=true';
 }
 
-// Jogos com mais atividade recente (para home)
+//HOME - atividade recente
 function getRecentActiveGames(int $limit = 6): array {
     $db = getDB();
     $stmt = $db->prepare(
@@ -198,7 +206,7 @@ function getRecentActiveGames(int $limit = 6): array {
     return $stmt->fetchAll();
 }
 
-// Melhores avaliados
+//HOME - melhores avaliados
 function getTopRatedGames(int $limit = 6): array {
     $db = getDB();
     $stmt = $db->prepare(
@@ -214,7 +222,7 @@ function getTopRatedGames(int $limit = 6): array {
     return $stmt->fetchAll();
 }
 
-// Piores avaliados
+//HOME - piores avaliados
 function getLowestRatedGames(int $limit = 6): array {
     $db = getDB();
     $stmt = $db->prepare(
@@ -230,7 +238,7 @@ function getLowestRatedGames(int $limit = 6): array {
     return $stmt->fetchAll();
 }
 
-// Estrelas HTML (1-10)
+//estrelas fofas no html
 function renderStars(int $rating): string {
     $html = '<span class="stars-display" title="' . $rating . '/10">';
     for ($i = 1; $i <= 10; $i++) {
