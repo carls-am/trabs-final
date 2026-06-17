@@ -10,6 +10,7 @@ define('UPLOAD_DIR', __DIR__ . '/uploads/avatars/');
 define('MAX_REVIEW_CHARS', 2000);
 define('DEFAULT_THEME', 'dark');
 
+// Conexão PDO
 function getDB(): PDO {
     static $pdo = null;
     if ($pdo === null) {
@@ -45,7 +46,7 @@ function h(?string $str): string {
     return htmlspecialchars($str ?? '', ENT_QUOTES, 'UTF-8');
 }
 
-// Tema atual (cookie ou padrão)
+// Tema atual (cookie/padrão)
 function getCurrentTheme(): string {
     return $_COOKIE['theme'] ?? DEFAULT_THEME;
 }
