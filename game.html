@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarPad — Elden Ring</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo"><span class="logo-icon">⭐</span><span class="logo-text">StarPad</span></a>
+            <nav class="main-nav">
+                <a href="index.html">Início</a>
+                <a href="catalog.html">Catálogo</a>
+                <a href="my_lists.html">Minhas Listas</a>
+            </nav>
+            <div class="header-actions">
+                <form class="search-form"><input type="text" placeholder="Buscar jogos..."><button>🔍</button></form>
+                <button class="theme-toggle">🌙</button>
+                <div class="user-menu">
+                    <a href="profile.html" class="user-avatar-link"><img src="https://ui-avatars.com/api/?name=Joao&background=e94560&color=fff&size=32" class="avatar-small"><span class="username-nav">João</span></a>
+                    <a href="my_profile.html" class="btn-edit-profile">⚙️</a>
+                    <a href="login.html" class="btn-logout">Sair</a>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="game-detail">
+            <div class="game-detail-cover"><img src="https://placehold.co/300x400/1a1a2e/e94560?text=Elden+Ring"></div>
+            <div class="game-detail-info">
+                <h1>Elden Ring</h1>
+                <div class="game-detail-meta">
+                    <span>🎮 FromSoftware</span>
+                    <span>📀 PS5</span>
+                    <span>📅 2022</span>
+                    <span>🎯 RPG de Ação</span>
+                </div>
+                <div class="tag-list"><a href="catalog.html" class="tag">RPG</a><a href="catalog.html" class="tag">Ação</a><a href="catalog.html" class="tag">Mundo Aberto</a></div>
+                <p class="game-detail-description">Um dos jogos mais aclamados da década. Explore as Terras Intermédias em uma jornada épica.</p>
+                <div class="game-detail-stats">
+                    <div class="stat-big"><div class="stat-number">9.8</div><div class="stat-label">Média Geral</div><div class="stat-stars">⭐⭐⭐⭐⭐</div></div>
+                    <div class="stat-big"><div class="stat-number">230</div><div class="stat-label">Resenhas</div></div>
+                </div>
+            </div>
+        </div>
+
+        <section style="margin-bottom:2rem;">
+            <h3>Sua Avaliação</h3>
+            <form style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius);border:1px solid var(--border-color);">
+                <div class="form-group">
+                    <label>Nota (1 a 10):</label>
+                    <div class="star-rating-input">
+                        <span class="star selected">★</span><span class="star selected">★</span><span class="star selected">★</span><span class="star selected">★</span><span class="star selected">★</span>
+                        <span class="star selected">★</span><span class="star selected">★</span><span class="star selected">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Análise (máx. 500 caracteres):</label>
+                    <textarea>Jogo incrível! A liberdade é imensa e a dificuldade é desafiadora.</textarea>
+                </div>
+                <div class="form-group"><label><input type="checkbox"> Contém spoilers</label></div>
+                <button class="btn-primary">Atualizar Avaliação</button>
+            </form>
+        </section>
+
+        <section>
+            <h3>💬 Resenhas da Comunidade (230)</h3>
+            <div class="review-card">
+                <div class="review-header">
+                    <img src="https://ui-avatars.com/api/?name=Ana&background=e94560&color=fff&size=40" class="review-avatar">
+                    <div><a href="profile.html" class="review-user">Ana</a><div class="review-date">15/06/2026</div></div>
+                    <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="review-text">Simplesmente obra-prima. A atmosfera é única.</div>
+                <div class="review-actions">
+                    <button class="btn-vote voted-like">❤️ 45</button>
+                    <button class="btn-vote">👎 3</button>
+                    <a href="report.html" class="btn-report">🚩 Denunciar</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">...</footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarPad — Catálogo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo"><span class="logo-icon">⭐</span><span class="logo-text">StarPad</span></a>
+            <nav class="main-nav">
+                <a href="index.html">Início</a>
+                <a href="catalog.html" class="active">Catálogo</a>
+                <a href="my_lists.html">Minhas Listas</a>
+            </nav>
+            <div class="header-actions">
+                <form class="search-form"><input type="text" placeholder="Buscar jogos..."><button>🔍</button></form>
+                <button class="theme-toggle">🌙</button>
+                <div class="user-menu">
+                    <a href="profile.html" class="user-avatar-link"><img src="https://ui-avatars.com/api/?name=Joao&background=e94560&color=fff&size=32" class="avatar-small"><span class="username-nav">João</span></a>
+                    <a href="my_profile.html" class="btn-edit-profile">⚙️</a>
+                    <a href="login.html" class="btn-logout">Sair</a>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 style="margin-bottom:0.5rem;">📋 Catálogo de Jogos</h1>
+        <p style="color:var(--text-muted);margin-bottom:1.5rem;">Explore, filtre e encontre seu próximo jogo favorito.</p>
+
+        <div class="filters-bar">
+            <input type="text" placeholder="🔍 Buscar por título...">
+            <select><option>Todos os gêneros</option><option>Ação</option><option>Aventura</option></select>
+            <select><option>Todas as plataformas</option><option>PS5</option><option>PC</option></select>
+            <select><option>Todas as tags</option><option>RPG</option><option>Indie</option></select>
+            <button class="btn-primary">Filtrar</button>
+            <a href="catalog.html" class="btn-secondary">Limpar</a>
+        </div>
+
+        <p style="color:var(--text-muted);margin-bottom:1rem;">6 jogo(s) encontrado(s).</p>
+        <div class="game-grid">
+            <div class="game-card"><a href="game.html" class="game-card-link"><img src="https://placehold.co/300x400/1a1a2e/e94560?text=Elden+Ring" class="game-card-img"><div class="game-card-body"><div class="game-card-title">Elden Ring</div><div class="game-card-meta">FromSoftware • PS5</div><div class="game-card-rating">⭐ 9.8/10 (230)</div></div></a></div>
+            <div class="game-card"><a href="game.html" class="game-card-link"><img src="https://placehold.co/300x400/1a1a2e/e94560?text=Baldur's+Gate+3" class="game-card-img"><div class="game-card-body"><div class="game-card-title">Baldur's Gate 3</div><div class="game-card-meta">Larian • PC</div><div class="game-card-rating">⭐ 9.6/10 (180)</div></div></a></div>
+            <div class="game-card"><a href="game.html" class="game-card-link"><img src="https://placehold.co/300x400/1a1a2e/e94560?text=Hades" class="game-card-img"><div class="game-card-body"><div class="game-card-title">Hades</div><div class="game-card-meta">Supergiant • PC</div><div class="game-card-rating">⭐ 9.4/10 (150)</div></div></a></div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <div class="footer-brand"><span class="logo-icon">⭐</span> <strong>StarPad</strong><p>Plataforma de reviews de jogos eletrônicos.</p></div>
+            <div class="footer-links"><h4>Navegação</h4><a href="index.html">Início</a><a href="catalog.html">Catálogo</a><a href="my_lists.html">Minhas Listas</a></div>
+            <div class="footer-credits"><p>© 2026 StarPad — Projeto Acadêmico</p><p>Antônio V. Medeiros, Arthur Elias, Daniel Cardozo, Carlos Adrian</p></div>
+        </div>
+    </footer>
+</body>
+</html>
