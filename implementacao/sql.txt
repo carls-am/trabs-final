@@ -1,5 +1,5 @@
 -- ============================================================
--- CRIAÇÃO DO BANCO DE DADOS
+-- CRIAÇÃO DAS TABELAS FOFAS
 -- ============================================================
 
 CREATE DATABASE IF NOT EXISTS starpad_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -107,75 +107,75 @@ INSERT INTO tags (name) VALUES
 -- jogos gomes
 
 INSERT INTO games (title, developer, genre, platform, release_date, cover_image_url, description) VALUES
-('Eclipse Protocol', 'Void Interactive', 'FPS', 'PC', '2024-03-15', 
- 'https://placehold.co/300x400/1a1a2e/e94560?text=Eclipse+Protocol&font=montserrat',
- 'Um FPS tático ambientado em um futuro distópico onde agentes de elite enfrentam corporações corruptas em missões de alto risco. Jogabilidade focada em trabalho em equipe e narrativa ramificada.'),
+('Scare the cat', 'Historietas assombradas para crianças mal criadas', 'FPS', 'PC', '2024-03-15', 
+ 'https://i.pinimg.com/736x/f0/33/af/f033af1c3c72fc20ca5da6259fdbbd5a.jpg',
+ 'Um fps tático onde você atira pau em gatos e eles não morrem então Dona Chica ademirada com o berro do gato vem te perseguir em uma batalha mortal.'),
 
-('Neon Drift', 'Synthwave Studios', 'Corrida', 'PC', '2023-11-20',
- 'https://placehold.co/300x400/0f0f23/00d4ff?text=Neon+Drift&font=montserrat',
- 'Corrida arcade com estética synthwave, pistas iluminadas por neon e uma trilha sonora eletrizante. Personalize seu veículo e dispute contra pilotos de todo o mundo.'),
+('60 seconds', 'DemonMonica Studios', 'Corrida', 'PC', '2023-11-20',
+ 'https://i.pinimg.com/736x/f3/50/17/f35017daf0ad58f1cdb61bc61885e03b.jpg',
+ 'Jogo Mortifero onde você é um gatinho tentando impedir o fim do mundo de um meteoro que ira atingir a terra nos proximos 60 segundos, mas o verdadeiro plot twist é que era tudo um sonho.'),
 
-('Shadow Realm', 'Elder Forge', 'RPG', 'PlayStation 5', '2024-06-10',
- 'https://placehold.co/300x400/2d1b3d/c9a0dc?text=Shadow+Realm&font=montserrat',
- 'RPG de ação em mundo aberto onde você explora reinos sombrios, enfrenta criaturas místicas e descobre segredos ancestrais. Sistema de combate dinâmico e árvore de habilidades profunda.'),
+('Five Nights at Belugas 4', 'Scott Mpregton', 'RPG', 'PlayStation 5', '2024-06-10',
+ 'https://i.pinimg.com/736x/d0/2c/d8/d02cd89840aeee31eef38bb053fd611a.jpg',
+ 'A sequencia da proclamada série Five Nights at Belugas, agora o jogo se ambienta em uma casa e o jogador é apenas uma criança fugindo dos horrores que tentam alcançar-lo pelo discord de todas as formas.'),
 
-('Pixel Warriors', 'BitBlade', 'Indie', 'Nintendo Switch', '2024-01-05',
- 'https://placehold.co/300x400/1a3a1a/7fff7f?text=Pixel+Warriors&font=montserrat',
- 'Aventura indie em pixel art com elementos de metroidvania. Explore masmorras, colete itens lendários e derrote chefes desafiadores neste tributo aos clássicos dos anos 90.'),
+('Murder Us', 'HenryTheStickman', 'Indie', 'Nintendo Switch', '2024-01-05',
+ 'https://static.wikia.nocookie.net/ec5c2823-f47e-4480-a77d-f9b85483d609/scale-to-width/755',
+ 'Murder Us é um jogo que explodiu em popularidade recentemente, é um friendslop para você se divertir com seus amigos tentando descobrir qual deles é o impostor, completamente diferente de among us.'),
 
-('Arena Legends', 'Iron Circuit', 'E-sports', 'PC', '2023-09-18',
+('Mobile legends Bang Bang', 'Riot Games?', 'E-sports', 'PC', '2023-09-18',
  'https://placehold.co/300x400/1a1a3e/f5c518?text=Arena+Legends&font=montserrat',
  'MOBA competitivo com heróis únicos e partidas ranqueadas intensas. O cenário competitivo já movimenta torneios internacionais com premiações milionárias.'),
 
-('Dreadwood', 'Nightfall Games', 'Terror', 'PC', '2024-02-28',
- 'https://placehold.co/300x400/0d0d0d/8b0000?text=Dreadwood&font=montserrat',
- 'Survival horror psicológico ambientado em uma floresta amaldiçoada. Gerencie recursos escassos, resolva quebra-cabeças e enfrente horrores que se adaptam aos seus medos.'),
+('Shark Simulator', 'Digital Circus', 'Terror', 'PC', '2024-02-28',
+ 'https://i.pinimg.com/736x/71/a4/a1/71a4a16f60929fefe8f335d48c401a72.jpg',
+ 'Entre na vida de um selvagem tubarão.... youtuber? isso mesmo! controle esse pequeno peixe e ajude-o a chegar ao primeiro lugar de inscritos no youtube tomando cuidado com os perigos que aguardam ele nessa jornada.'),
 
-('Starforge Command', 'Galaxy Forge', 'Estratégia', 'PC', '2024-04-22',
- 'https://placehold.co/300x400/0a1628/4ea8de?text=Starforge+Command&font=montserrat',
- 'RTS espacial com batalhas épicas entre facções interestelares. Construa bases, comande frotas e conquiste sistemas solares em uma campanha não linear.'),
+('Bird Game 3', 'VOVIO', 'Estratégia', 'PC', '2024-04-22',
+ 'https://i.pinimg.com/736x/40/ec/6f/40ec6f78b5510522ad8041b14b9a7bf2.jpg',
+ 'A luta de passaros contra porcos nunca termina, se aventure na jornada de bird game 3 e ajude os passaros a recuperarem seus filhos resolvendo puzzles de altissimos niveis.'),
 
-('Turbo Brawl', 'Crash Pixel', 'Ação', 'Xbox Series X', '2024-05-30',
- 'https://placehold.co/300x400/3d1500/ff6b35?text=Turbo+Brawl&font=montserrat',
- 'Party fighter caótico para até 8 jogadores locais ou online. Personagens excêntricos, arenas interativas e power-ups que viram o jogo a qualquer momento.'),
+('Counter Blox', 'Volvo', 'Ação', 'Xbox Series X', '2024-05-30',
+ 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcqwxtBb733qLQ7FXo1-65df7pqRBKXx5o7g&s',
+ 'A sequencia do renomeado Counter Strike agora vem oficialmente para a nova engine KogamaBloxCraft.'),
 
-('Echoes of the Fallen', 'Lunaris Studio', 'RPG', 'PC', '2024-07-12',
- 'https://placehold.co/300x400/1c1c3a/c0c0ff?text=Echoes+of+the+Fallen&font=montserrat',
- 'RPG narrativo com escolhas que impactam profundamente a história. Acompanhe um grupo de heróis em uma jornada emocionante para restaurar o equilíbrio entre luz e escuridão.'),
+('FrontRooms', 'God', 'RPG', 'PC', '2024-07-12',
+ 'https://jornalismojunior.com.br/wp-content/uploads/2025/05/image13-2-1024x683.jpg',
+ 'Já se encontrou com medo das BackRooms?? não se preocupe! com o novo jogo de Deus FrontRooms agora você pode ter a experiencia completa de como é não estar nas backrooms ou seja o mundo real!.'),
 
-('Velocity X', 'Apex Drive', 'Corrida', 'PlayStation 5', '2024-08-03',
- 'https://placehold.co/300x400/200020/ff69b4?text=Velocity+X&font=montserrat',
- 'Corrida futurista com veículos antigravidade em pistas que desafiam a física. Gráficos de última geração e multiplayer cross-platform.'),
+('SanicBall', 'NOTSEGA', 'Corrida', 'PlayStation 5', '2024-08-03',
+ 'https://store-images.s-microsoft.com/image/apps.61263.13619593113883196.1cf4c313-f310-4a09-a767-048c2f762599.ea89412f-8856-47d1-94ca-32513d19cff0',
+ 'O novo mais recente saido do forno recentemente lançado jogo da NOTSEGA acompanha os jogadores a um mundo fantasioso de Sanic onde deverá competir com seus principais antagonistas para chegar em primeiro lugar.'),
 
-('Bastion Siege', 'Shieldwall Studios', 'Ação', 'PC', '2024-03-28',
- 'https://placehold.co/300x400/3d2b1a/d4a574?text=Bastion+Siege&font=montserrat',
- 'Jogo de ação medieval com cercos a castelos, combate com espadas e escudos, e um modo história inspirado em eventos históricos.'),
+('Pepsi Man', 'Cock Cola Studios', 'Ação', 'PC', '2024-03-28',
+ 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxsNrRWNNNg38qF7ocJ7IBW34keLlgAdgvWg&s',
+ 'Jogo de ação moderno onde você atropela idosas e crianças de colo na rua enquanto vende pepsi!'),
 
-('Data Breach', 'Cipher Corp', 'FPS', 'PC', '2024-09-15',
- 'https://placehold.co/300x400/001a00/00ff88?text=Data+Breach&font=montserrat',
- 'FPS cyberpunk focado em hacking e infiltração. Invada sistemas, desative defesas e enfrente corporações em um mundo hiperconectado.'),
+('Vib Ribbon', 'Soppy', 'FPS', 'PC', '2024-09-15',
+ 'https://m.media-amazon.com/images/M/MV5BZjM4YjAzZTUtOTdjNC00MDFmLThmMGUtYmQ1YjcyOWI0NmNlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+ 'O jogo mais pesado que você vai ver hoje!.'),
 
-('Little Monsters', 'Happy Pixels', 'Indie', 'Nintendo Switch', '2024-06-01',
- 'https://placehold.co/300x400/fff5e6/ff9999?text=Little+Monsters&font=montserrat',
- 'Simulador adorável onde você cuida de criaturinhas fofas, constrói seu habitat e explora um mundo colorido cheio de surpresas. Relaxante e encantador.'),
+('My Dying Monsters', 'Evil Pixels', 'Indie', 'Nintendo Switch', '2024-06-01',
+ 'https://i.ytimg.com/vi/36LEgp27QcE/maxresdefault.jpg',
+ 'Faça uma melodia com os grunhidos de morte dos seus monstros favoritos!.'),
 
-('Warzone: Rebirth', 'Omega Strike', 'Battle Royale', 'PC', '2024-01-20',
- 'https://placehold.co/300x400/1a0000/ff4444?text=Warzone+Rebirth&font=montserrat',
- 'Battle Royale renovado com mapa dinâmico, eventos ao vivo e um sistema de classes que permite diferentes estilos de jogo. Crossplay completo entre plataformas.');
+('Dora doutora', 'EE Sedentarios', 'Battle Royale', 'PC', '2024-01-20',
+ 'https://i.ytimg.com/vi/-KpnIU7_8ew/maxresdefault.jpg',
+ 'Embarque no mundo competitivo de dora doutora, o mais novo battle royale da EE onde você deve derrotar seus oponentes realizando procedimentos cirurgicos na boca de Dora mais rapido que seus adversarios.');
 
 -- botar tags nos jogos
 INSERT INTO game_tags (game_id, tag_id) VALUES
-(1,1),(1,3),(1,6),                              -- Eclipse Protocol: Ação, FPS, Multiplayer
-(2,1),(2,11),(2,6),                             -- Neon Drift: Ação, Corrida, Multiplayer
-(3,2),(3,7),(3,8),                              -- Shadow Realm: RPG, Singleplayer, Mundo Aberto
-(4,4),(4,7),(4,12),                             -- Pixel Warriors: Indie, Singleplayer, Pixel Art
-(5,5),(5,6),(5,14),                             -- Arena Legends: E-sports, Multiplayer, Competitivo
-(6,9),(6,7),                                    -- Dreadwood: Terror, Singleplayer
-(7,10),(7,7),(7,6),                             -- Starforge Command: Estratégia, Singleplayer, Multiplayer
-(8,1),(8,6),(8,13),                             -- Turbo Brawl: Ação, Multiplayer, Cooperativo
-(9,2),(9,7),(9,8),                              -- Echoes of the Fallen: RPG, Singleplayer, Mundo Aberto
-(10,1),(10,11),(10,6),                          -- Velocity X: Ação, Corrida, Multiplayer
-(11,1),(11,7),                                  -- Bastion Siege: Ação, Singleplayer
-(12,1),(12,3),(12,7),                           -- Data Breach: Ação, FPS, Singleplayer
-(13,4),(13,7),(13,12),                          -- Little Monsters: Indie, Singleplayer, Pixel Art
-(14,15),(14,6),(14,14);                         -- Warzone Rebirth: Battle Royale, Multiplayer, Competitivo
+(1,1),(1,3),(1,9),                              -- Scare the Cat: Ação, FPS, Terror
+(2,10),(2,11),(2,7),                             -- 60 Seconds: Estratégia, Corrida, Singleplayer
+(3,2),(3,7),(3,9),                              -- Five Nights at belugas 4: RPG, Singleplayer, Terror
+(4,4),(4,6),(4,12),                             -- Murder Us: Indie, Multiplayer, Pixel Art
+(5,5),(5,6),(5,14),                             -- Mobile Legends Bang Bang: E-sports, Multiplayer, Competitivo
+(6,9),(6,7),                                    -- Shark Simulator: Terror, Singleplayer
+(7,10),(7,7),(7,6),                             -- Bird Game 3 Command: Estratégia, Singleplayer, Multiplayer
+(8,1),(8,6),(8,13),                             -- Counter Blox: Ação, Multiplayer, Cooperativo
+(9,2),(9,7),(9,8),                              -- FrontRooms: RPG, Singleplayer, Mundo Aberto
+(10,1),(10,11),(10,6),                          -- SanicBall: Ação, Corrida, Multiplayer
+(11,1),(11,7),                                  -- Pepsi Man: Ação, Singleplayer
+(12,1),(12,3),(12,7),                           -- Vib Ribbon: Ação, FPS, Singleplayer
+(13,4),(13,7),(13,9),                           -- My Dying Monsters: Indie, Singleplayer, Terror
+(14,15),(14,6),(14,14);                         -- Dore Doutora: Battle Royale, Multiplayer, Competitivo
