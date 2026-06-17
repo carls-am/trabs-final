@@ -4,9 +4,10 @@ require_once __DIR__ . '/config.php';
 //pega o tema do config
 $currentTheme = getCurrentTheme();
 $currentPage = basename($_SERVER['PHP_SELF']);
-?>
 
 //html fofo de header, inicia outros documentos tb
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="<?= $currentTheme ?>">
 <head>
@@ -24,7 +25,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <header class="main-header">
     <div class="header-inner">
         <a href="<?= SITE_URL ?>/index.php" class="logo">
-            <span class="logo-icon">⭐</span>
+            <span class="logo-icon">✩</span>
             <span class="logo-text">StarPad</span>
         </a>
         

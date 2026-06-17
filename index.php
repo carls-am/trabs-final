@@ -19,7 +19,7 @@ include __DIR__ . '/header.php';
 
 <!-- Jogos com Atividade Recente -->
 <section class="home-section">
-    <h2 class="section-title"><span class="icon">🕐</span> Atividade Recente</h2>
+    <h2 class="section-title"><span class="icon">⏲</span> Atividade Recente</h2>
     <?php if ($recentGames): ?>
         <div class="game-grid">
             <?php foreach ($recentGames as $game): 
