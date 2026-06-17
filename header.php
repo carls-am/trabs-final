@@ -18,7 +18,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= SITE_URL ?>/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
 </head>
 <body class="<?= $currentTheme ?>-theme">
 
@@ -42,13 +41,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <form class="search-form" action="<?= SITE_URL ?>/catalog.php" method="GET">
                 <input type="text" name="search" placeholder="Buscar jogos..." 
                        value="<?= h($_GET['search'] ?? '') ?>" aria-label="Buscar jogos">
-                <button type="submit" aria-label="Pesquisar">🔍</button>
+                <button type="submit" aria-label="Pesquisar">🔍︎</button>
             </form>
             
             <!-- Toggle tema -->
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema" title="Alternar tema claro/escuro">
-                <span class="theme-icon-dark">🌙</span>
-                <span class="theme-icon-light">☀️</span>
+                <span class="theme-icon-dark" style="color: white">☀︎</span>
+                <span class="theme-icon-light" style="color: black">⏾</span>
             </button>
             
             <!-- Usuário -->
@@ -61,7 +60,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                              alt="<?= h($currentUser['username']) ?>" class="avatar-small">
                         <span class="username-nav"><?= h($currentUser['username']) ?></span>
                     </a>
-                    <a href="<?= SITE_URL ?>/my_profile.php" class="btn-edit-profile" title="Editar perfil">⚙️</a>
+                    <a href="<?= SITE_URL ?>/my_profile.php" class="btn-edit-profile" title="Editar perfil">⚙</a>
                     <a href="<?= SITE_URL ?>/logout.php" class="btn-logout">Sair</a>
                 </div>
             <?php else: ?>

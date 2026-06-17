@@ -14,12 +14,12 @@ $allTags = getAllTags();
 include __DIR__ . '/header.php';
 ?>
 
-<h1 style="margin-bottom:0.5rem;">📋 Catálogo de Jogos</h1>
+<h1 style="margin-bottom:0.5rem;">Catálogo de Jogos</h1>
 <p style="color:var(--text-muted);margin-bottom:1.5rem;">Explore, filtre e encontre seu próximo jogo favorito.</p>
 
 <!-- Filtros -->
 <form class="filters-bar" method="GET" action="<?= SITE_URL ?>/catalog.php">
-    <input type="text" name="search" placeholder="🔍 Buscar por título ou desenvolvedora..." value="<?= h($search) ?>">
+    <input type="text" name="search" placeholder="Buscar por título ou desenvolvedora..." value="<?= h($search) ?>">
     <select name="genre">
         <option value="">Todos os gêneros</option>
         <?php foreach ($allGenres as $g): ?>
@@ -61,7 +61,7 @@ include __DIR__ . '/header.php';
                         <div class="game-card-title"><?= h($game['title']) ?></div>
                         <div class="game-card-meta"><?= h($game['developer']) ?> • <?= h($game['platform']) ?></div>
                         <?php if ($avg): ?>
-                            <div class="game-card-rating">⭐ <?= $avg ?>/10 (<?= $count ?>)</div>
+                            <div class="game-card-rating">✩ <?= $avg ?>/10 (<?= $count ?>)</div>
                         <?php else: ?>
                             <div class="game-card-rating" style="color:var(--text-muted);">Sem notas</div>
                         <?php endif; ?>
@@ -72,7 +72,7 @@ include __DIR__ . '/header.php';
     </div>
 <?php else: ?>
     <div style="text-align:center;padding:3rem;color:var(--text-muted);">
-        <p style="font-size:3rem;">🎮</p>
+        <p style="font-size:3rem;">(jogos)</p>
         <p>Nenhum jogo encontrado com esses filtros.</p>
         <a href="<?= SITE_URL ?>/catalog.php" class="btn-secondary mt-1">Limpar filtros</a>
     </div>

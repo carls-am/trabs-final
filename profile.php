@@ -29,12 +29,12 @@ include __DIR__ . '/header.php';
             <p class="bio"><?= nl2br(h($profileUser['bio'])) ?></p>
         <?php endif; ?>
         <div class="profile-stats">
-            <span>📝 <?= count($userReviews) ?> análises</span>
-            <span>📋 <?= count($userLists) ?> listas</span>
-            <span>📅 Membro desde <?= date('d/m/Y', strtotime($profileUser['created_at'])) ?></span>
+            <span><?= count($userReviews) ?> análises</span>
+            <span><?= count($userLists) ?> listas</span>
+            <span>Membro desde <?= date('d/m/Y', strtotime($profileUser['created_at'])) ?></span>
         </div>
         <?php if (isLoggedIn() && $_SESSION['user_id'] == $profileUser['id']): ?>
-            <a href="<?= SITE_URL ?>/my_profile.php" class="btn-secondary mt-1" style="display:inline-block;">✏️ Editar Perfil</a>
+            <a href="<?= SITE_URL ?>/my_profile.php" class="btn-secondary mt-1" style="display:inline-block;">Editar Perfil</a>
         <?php endif; ?>
     </div>
 </div>
@@ -42,7 +42,7 @@ include __DIR__ . '/header.php';
 <!-- Listas Públicas -->
 <?php if ($publicLists): ?>
     <section style="margin-bottom:2rem;">
-        <h3>📋 Listas de Jogos</h3>
+        <h3>Listas de Jogos</h3>
         <?php foreach ($publicLists as $list): 
             $db = getDB();
             $stmt = $db->prepare("SELECT COUNT(*) FROM list_entries WHERE list_id = ?");
@@ -51,7 +51,7 @@ include __DIR__ . '/header.php';
         ?>
             <div class="list-card">
                 <h3><?= h($list['name']) ?></h3>
-                <div class="list-meta"><?= $gameCount ?> jogo(s) • 🌐 Pública</div>
+                <div class="list-meta"><?= $gameCount ?> jogo(s) • Pública</div>
             </div>
         <?php endforeach; ?>
     </section>
@@ -59,7 +59,7 @@ include __DIR__ . '/header.php';
 
 <!-- Histórico de Reviews -->
 <section>
-    <h3>📝 Histórico de Análises</h3>
+    <h3>Histórico de Análises</h3>
     <?php if ($userReviews): ?>
         <?php foreach ($userReviews as $review): ?>
             <div class="review-card">
@@ -78,7 +78,7 @@ include __DIR__ . '/header.php';
                     <div class="review-text"><?= nl2br(h($review['review_text'])) ?></div>
                 <?php endif; ?>
                 <?php if ($review['has_spoiler']): ?>
-                    <span class="spoiler-badge">⚠️ Contém spoilers</span>
+                    <span class="spoiler-badge">Contém spoilers</span>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>

@@ -20,7 +20,7 @@ include __DIR__ . '/header.php';
 ?>
 
 <div class="form-container">
-    <h2>🚩 Denunciar</h2>
+    <h2>Denunciar</h2>
     <?php if ($message): ?>
         <div class="message <?= $messageType ?>"><?= h($message) ?></div>
         <?php if ($messageType === 'success'): ?>

@@ -37,11 +37,11 @@ include __DIR__ . '/header.php';
     <div class="message <?= $messageType ?>"><?= h($message) ?></div>
 <?php endif; ?>
 
-<h1>📋 Minhas Listas</h1>
+<h1>Minhas Listas</h1>
 
 <!-- Criar nova lista -->
 <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius);border:1px solid var(--border-color);margin:1.5rem 0;">
-    <h3>➕ Nova Lista</h3>
+    <h3>Nova Lista</h3>
     <form method="POST">
         <input type="hidden" name="action" value="create_list">
         <div style="display:flex;gap:1rem;align-items:end;flex-wrap:wrap;">
@@ -50,7 +50,7 @@ include __DIR__ . '/header.php';
                 <input type="text" name="list_name" id="list_name" required placeholder="Ex: Jogos Zerados 2026">
             </div>
             <div class="form-group" style="margin:0;">
-                <label><input type="checkbox" name="is_public" value="1" checked> 🌐 Pública</label>
+                <label><input type="checkbox" name="is_public" value="1" checked> Pública</label>
             </div>
             <button type="submit" class="btn-primary">Criar</button>
         </div>
@@ -75,7 +75,7 @@ include __DIR__ . '/header.php';
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
                 <h3><?= h($list['name']) ?> 
                     <span style="font-size:0.8rem;color:var(--text-muted);">
-                        (<?= $gameCount ?> jogos • <?= $list['is_public'] ? '🌐 Pública' : '🔒 Privada' ?>)
+                        (<?= $gameCount ?> jogos • <?= $list['is_public'] ? 'Pública' : 'Privada' ?>)
                     </span>
                 </h3>
                 <div>
@@ -115,7 +115,7 @@ include __DIR__ . '/header.php';
         </div>
     <?php endforeach; ?>
 <?php else: ?>
-    <p style="color:var(--text-muted);text-align:center;padding:2rem;">Você ainda não criou nenhuma lista. Crie uma acima! 📋</p>
+    <p style="color:var(--text-muted);text-align:center;padding:2rem;">Você ainda não criou nenhuma lista. Crie uma acima!</p>
 <?php endif; ?>
 
 <?php include __DIR__ . '/footer.php'; ?>

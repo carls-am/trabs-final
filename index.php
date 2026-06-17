@@ -9,7 +9,7 @@ include __DIR__ . '/header.php';
 
 <!-- Hero Banner -->
 <section class="hero-banner">
-    <h1>⭐ StarPad</h1>
+    <h1>StarPad</h1>
     <p>Descubra, avalie e compartilhe suas experiências com jogos eletrônicos. A comunidade gamer que inspira suas próximas aventuras.</p>
     <a href="<?= SITE_URL ?>/catalog.php" class="btn-primary">Explorar Catálogo</a>
     <?php if (!isLoggedIn()): ?>
@@ -19,7 +19,7 @@ include __DIR__ . '/header.php';
 
 <!-- Jogos com Atividade Recente -->
 <section class="home-section">
-    <h2 class="section-title"><span class="icon">⏲</span> Atividade Recente</h2>
+    <h2 class="section-title">Atividade Recente</h2>
     <?php if ($recentGames): ?>
         <div class="game-grid">
             <?php foreach ($recentGames as $game): 
@@ -36,7 +36,7 @@ include __DIR__ . '/header.php';
                             <div class="game-card-title"><?= h($game['title']) ?></div>
                             <div class="game-card-meta"><?= h($game['genre']) ?> • <?= h($game['platform']) ?></div>
                             <?php if ($avg): ?>
-                                <div class="game-card-rating">⭐ <?= $avg ?>/10 (<?= $game['review_count'] ?> reviews)</div>
+                                <div class="game-card-rating"><?= $avg ?>/10 (<?= $game['review_count'] ?> reviews)</div>
                             <?php else: ?>
                                 <div class="game-card-rating" style="color:var(--text-muted);">Sem avaliações</div>
                             <?php endif; ?>
@@ -52,7 +52,7 @@ include __DIR__ . '/header.php';
 
 <!-- Melhores Avaliados -->
 <section class="home-section">
-    <h2 class="section-title"><span class="icon">🏆</span> Melhores Avaliados</h2>
+    <h2 class="section-title">Melhores Avaliados</h2>
     <?php if ($topGames): ?>
         <div class="game-grid">
             <?php foreach ($topGames as $game): ?>
@@ -65,7 +65,7 @@ include __DIR__ . '/header.php';
                              onerror="this.src='https://placehold.co/300x400/1a1a2e/e94560?text=Sem+Capa'">
                         <div class="game-card-body">
                             <div class="game-card-title"><?= h($game['title']) ?></div>
-                            <div class="game-card-rating">⭐ <?= round($game['avg_rating'], 1) ?>/10</div>
+                            <div class="game-card-rating"><?= round($game['avg_rating'], 1) ?>/10</div>
                         </div>
                     </a>
                 </div>
@@ -78,7 +78,7 @@ include __DIR__ . '/header.php';
 
 <!-- Piores Avaliados -->
 <section class="home-section">
-    <h2 class="section-title"><span class="icon">📉</span> Piores Avaliados</h2>
+    <h2 class="section-title">Piores Avaliados</h2>
     <?php if ($lowGames): ?>
         <div class="game-grid">
             <?php foreach ($lowGames as $game): ?>
@@ -91,7 +91,7 @@ include __DIR__ . '/header.php';
                              onerror="this.src='https://placehold.co/300x400/1a1a2e/e94560?text=Sem+Capa'">
                         <div class="game-card-body">
                             <div class="game-card-title"><?= h($game['title']) ?></div>
-                            <div class="game-card-rating">⭐ <?= round($game['avg_rating'], 1) ?>/10</div>
+                            <div class="game-card-rating"><?= round($game['avg_rating'], 1) ?>/10</div>
                         </div>
                     </a>
                 </div>
@@ -104,7 +104,7 @@ include __DIR__ . '/header.php';
 
 <!-- Tags Populares -->
 <section class="home-section">
-    <h2 class="section-title"><span class="icon">🏷️</span> Tags Populares</h2>
+    <h2 class="section-title">Tags Populares</h2>
     <div class="tag-list">
         <?php foreach (array_slice($allTags, 0, 15) as $tag): ?>
             <a href="<?= SITE_URL ?>/catalog.php?tag=<?= urlencode($tag['name']) ?>" class="tag">
