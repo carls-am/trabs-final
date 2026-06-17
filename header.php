@@ -1,8 +1,12 @@
 <?php
+//super header ultra mega blaster
 require_once __DIR__ . '/config.php';
+//pega o tema do config
 $currentTheme = getCurrentTheme();
 $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
+
+//html fofo de header, inicia outros documentos tb
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="<?= $currentTheme ?>">
 <head>
