@@ -14,7 +14,7 @@ if (!isLoggedIn()) {
 $db = getDB();
 $userId = $_SESSION['user_id'];
 
-// Votar em review (like/dislike)
+//Like e deslike
 if ($action === 'vote' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $reviewId = (int)($_POST['review_id'] ?? 0);
     $voteType = $_POST['vote_type'] ?? '';
@@ -25,7 +25,7 @@ if ($action === 'vote' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     
-    // Verificar se review existe
+    //ve se ja tem review
     $stmt = $db->prepare("SELECT id FROM reviews WHERE id = ?");
     $stmt->execute([$reviewId]);
     if (!$stmt->fetch()) {
@@ -34,28 +34,28 @@ if ($action === 'vote' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     
-    // Verificar voto existente
+    //ve se ja tem voto
     $stmt = $db->prepare("SELECT * FROM review_likes WHERE user_id = ? AND review_id = ?");
     $stmt->execute([$userId, $reviewId]);
     $existing = $stmt->fetch();
     
     if ($existing) {
         if ($existing['vote_type'] === $voteType) {
-            // Remover voto (toggle)
+            //DELETAR voto
             $stmt = $db->prepare("DELETE FROM review_likes WHERE id = ?");
             $stmt->execute([$existing['id']]);
         } else {
-            // Trocar voto
+            //updatear voto
             $stmt = $db->prepare("UPDATE review_likes SET vote_type = ? WHERE id = ?");
             $stmt->execute([$voteType, $existing['id']]);
         }
     } else {
-        // Novo voto
+        //adicionar novo voto
         $stmt = $db->prepare("INSERT INTO review_likes (user_id, review_id, vote_type) VALUES (?,?,?)");
         $stmt->execute([$userId, $reviewId, $voteType]);
     }
     
-    // Obter contagem atualizada
+    //contar votos
     $votes = getReviewVotes($reviewId);
     $userVote = getUserVote($userId, $reviewId);
     
@@ -67,12 +67,12 @@ if ($action === 'vote' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 }
 
-// Adicionar jogo a uma lista
+//adicionar a lista
 if ($action === 'add_to_list' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $listId = (int)($_POST['list_id'] ?? 0);
     $gameId = (int)($_POST['game_id'] ?? 0);
     
-    // Verificar se a lista pertence ao usuário
+    //lista - usuario
     $stmt = $db->prepare("SELECT id FROM user_lists WHERE id = ? AND user_id = ?");
     $stmt->execute([$listId, $userId]);
     if (!$stmt->fetch()) {
@@ -81,14 +81,14 @@ if ($action === 'add_to_list' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     
-    // Verificar se jogo existe
+    //ve s e o jogo existe
     if (!getGame($gameId)) {
         $response['message'] = 'Jogo não encontrado.';
         echo json_encode($response);
         exit;
     }
     
-    // Inserir (ignorar duplicatas)
+    //inserir - sem duplicata
     try {
         $stmt = $db->prepare("INSERT IGNORE INTO list_entries (list_id, game_id) VALUES (?,?)");
         $stmt->execute([$listId, $gameId]);
@@ -98,4 +98,5 @@ if ($action === 'add_to_list' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+//fofocas
 echo json_encode($response);
