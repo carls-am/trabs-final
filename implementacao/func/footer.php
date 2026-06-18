@@ -15,9 +15,9 @@
             <?php endif; ?>
         </div>
         <div class="footer-credits">
-            <p>© 2026 StarPad — Projeto Acadêmico</p>
-            <p>Antônio V. Medeiros, Arthur Elias, Daniel Cardozo, Carlos Adrian</p>
-            <p style="font-size:0.8rem;opacity:0.7;">Tecnologias: HTML, CSS, JavaScript, PHP & MySQL</p>
+            <p>© 2026 StarPad — Trabalho Final</p>
+            <p>Carls Co.</p>
+            <p style="font-size:0.8rem;opacity:0.7;">Tecnologia: HTML, CSS, JavaScript, PHP & MySQL (XAMPP)</p>
         </div>
     </div>
 </footer>
